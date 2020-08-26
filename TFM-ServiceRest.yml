@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+  tfm-service-rest:
+    build:
+      context: .
+      dockerfile: C:\Users\ferna\Desktop\TFM\TFM-ServiceREST\Dockerfile
+      network: docker-default

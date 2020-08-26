@@ -1,0 +1,30 @@
+version: "3"
+services:
+    elasticsearch:
+        image: elasticsearch:7.8.0
+        container_name: elasticsearch
+        hostname: elasticsearch
+        environment:
+            - "discovery.type=single-node"
+            - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+        ports:
+            - 9200:9200
+            - 9300:9300
+        networks:
+            - docker_default
+    kibana:
+        image: kibana:7.8.0
+        container_name: kibana
+        hostname: kibana
+        ports:
+            - 5601:5601
+        links:
+            - elasticsearch:elasticsearch
+        depends_on:
+          - elasticsearch
+        networks:
+          - docker_default
+networks:
+  docker_default:
+    external:
+      name: docker_default
